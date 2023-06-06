@@ -22,30 +22,30 @@ const Details = () => {
     // const history = useHistory();
 
 
-    // const getdata = async () => {
+    const getdata = async () => {
 
-    //     const res = await fetch(`https://crudappreactjs.herokuapp.com/getuser/${id}`, {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     });
+        const res = await fetch(`/getuser/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
 
-    //     const data = await res.json();
-    //     console.log(data);
+        const data = await res.json();
+        console.log(data);
 
-    //     if (res.status === 422 || !data) {
-    //         console.log("error ");
+        if (res.status === 422 || !data) {
+            console.log("error ");
 
-    //     } else {
-    //         setUserdata(data)
-    //         console.log("get data");
-    //     }
-    // }
+        } else {
+            setUserdata(data)
+            console.log("get data");
+        }
+    }
 
-    // useEffect(() => {
-    //     getdata();
-    // }, [])
+    useEffect(() => {
+        getdata();
+    }, [])
 
     // const deleteuser = async (id) => {
 
@@ -70,7 +70,7 @@ const Details = () => {
 
     return (
         <div className="container mt-3">
-            <h1 style={{ fontWeight: 400 }}>Welcome Shyama</h1>
+            <h1 style={{ fontWeight: 400 }}>Welcome {getuserdata.name}</h1>
 
             <Card sx={{ maxWidth: 600 }}>
                 <CardContent>

@@ -5,8 +5,8 @@ import { NavLink, useParams,useHistory } from 'react-router-dom'
 
 const Edit = () => {
 
-    // const [getuserdata, setUserdata] = useState([]);
-    // console.log(getuserdata);
+    const [getuserdata, setUserdata] = useState([]);
+    console.log(getuserdata);
 
 //    const {updata, setUPdata} = useContext(updatedata)
 
@@ -39,59 +39,60 @@ const Edit = () => {
 
 
 
-    // const getdata = async () => {
+    const getdata = async () => {
 
-    //     const res = await fetch(`https://crudappreactjs.herokuapp.com/getuser/${id}`, {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     });
+        const res = await fetch(`/getuser/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
 
-    //     const data = await res.json();
-    //     console.log(data);
+        const data = await res.json();
+        console.log(data);
 
-    //     if (res.status === 422 || !data) {
-    //         console.log("error ");
+        if (res.status === 422 || !data) {
+            console.log("error ");
 
-    //     } else {
-    //         setINP(data)
-    //         console.log("get data");
+        } else {
+            setINP(data)
+            console.log("get data");
 
-    //     }
-    // }
+        }
+    }
 
-    // useEffect(() => {
-    //     getdata();
-    // }, []);
+    useEffect(() => {
+        getdata();
+    }, []);
 
 
-    // const updateuser = async(e)=>{
-    //     e.preventDefault();
+    const updateuser = async(e)=>{
+        e.preventDefault();
 
-    //     const {name,email,work,add,mobile,desc,age} = inpval;
+        const {name,email,work,add,mobile,desc,age} = inpval;
 
-    //     const res2 = await fetch(`https://crudappreactjs.herokuapp.com/updateuser/${id}`,{
-    //         method: "PATCH",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body:JSON.stringify({
-    //             name,email,work,add,mobile,desc,age
-    //         })
-    //     });
+        const res2 = await fetch(`/updateuser/${id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({
+                name,email,work,add,mobile,desc,age
+            })
+        });
 
-    //     const data2 = await res2.json();
-    //     console.log(data2);
+        const data2 = await res2.json();
+        console.log(data2);
 
-    //     if(res2.status === 422 || !data2){
-    //         alert("fill the data");
-    //     }else{
-    //         history.push("/")
-    //         setUPdata(data2);
-    //     }
+        if(res2.status === 422 || !data2){
+            alert("fill the data");
+        }else{
+            alert("data updated");
+            // history.push("/")
+            // setUPdata(data2);
+        }
 
-    // }
+    }
 
     return (
         <div className="container">
@@ -127,7 +128,7 @@ const Edit = () => {
                         <textarea name="desc" value={inpval.desc} onChange={setdata} className="form-control" id="" cols="30" rows="5"></textarea>
                     </div>
 
-                    <button type="submit"  className="btn btn-primary">Submit</button>
+                    <button type="submit" onClick={updateuser} className="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>

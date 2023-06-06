@@ -10,8 +10,8 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-    // const [getuserdata, setUserdata] = useState([]);
-    // console.log(getuserdata);
+    const [getuserdata, setUserdata] = useState([]);
+    console.log(getuserdata);
 
     // const { udata, setUdata } = useContext(adddata);
 
@@ -19,31 +19,25 @@ const Home = () => {
 
     // const {dltdata, setDLTdata} = useContext(deldata);
 
-    // const getdata = async () => {
+    const getdata = async () => {
+        const res = await fetch("/getdata", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        });
 
-    //     const res = await fetch("https://crudappreactjs.herokuapp.com/getdata", {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     });
+        const data = await res.json();
+        console.log(data);
 
-    //     const data = await res.json();
-    //     console.log(data);
+        if (res.status === 422 || !data) { console.log("error "); } 
+        else {
+            setUserdata(data)
+            console.log("get data");
+        }
+    }
 
-    //     if (res.status === 422 || !data) {
-    //         console.log("error ");
-
-    //     } else {
-    //         setUserdata(data)
-    //         console.log("get data");
-
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getdata();
-    // }, [])
+    useEffect(() => {
+        getdata();
+    }, [])
 
     // const deleteuser = async (id) => {
 
@@ -120,7 +114,7 @@ const Home = () => {
                         </thead>
                         <tbody>
 
-                            {/* {
+                            {
                                 getuserdata.map((element, id) => {
                                     return (
                                         <>
@@ -131,16 +125,16 @@ const Home = () => {
                                                 <td>{element.work}</td>
                                                 <td>{element.mobile}</td>
                                                 <td className="d-flex justify-content-between">
-                                                    <NavLink to={`view/${element._id}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></NavLink>
-                                                    <NavLink to={`edit/${element._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></NavLink>
-                                                    <button className="btn btn-danger" onClick={() => deleteuser(element._id)}><DeleteOutlineIcon /></button>
+                                                    <Link to={`view/${element._id}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></Link>
+                                                    <Link to={`edit/${element._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></Link>
+                                                    <button className="btn btn-danger" ><DeleteOutlineIcon /></button>
                                                 </td>
                                             </tr>
                                         </>
                                     )
                                 })
-                            } */}
-                            <tr>
+                            }
+                            {/* <tr>
                                 <th scope="row">1</th>
                                 <td>Shyama</td>
                                 <td>shyama@gmail.com</td>
@@ -150,11 +144,11 @@ const Home = () => {
                                     <Link > <button className="btn btn-success"><RemoveRedEyeIcon /></button></Link>
                                     <Link >  <button className="btn btn-primary"><CreateIcon /></button></Link>
                                     <button className="btn btn-danger" ><DeleteOutlineIcon /></button>
-                                    {/* <Link to={`view/${element._id}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></Link>
+                                    <Link to={`view/${element._id}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></Link>
                                     <Link to={`edit/${element._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></Link>
-                                    <button className="btn btn-danger" onClick={() => deleteuser(element._id)}><DeleteOutlineIcon /></button> */}
+                                    <button className="btn btn-danger" onClick={() => deleteuser(element._id)}><DeleteOutlineIcon /></button>
                                 </td>
-                            </tr>
+                            </tr> */}
                         </tbody>
                     </table>
 

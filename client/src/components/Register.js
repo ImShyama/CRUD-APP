@@ -31,35 +31,36 @@ const Register = () => {
     
 
 
-    // const addinpdata = async (e) => {
-    //     e.preventDefault();
+    const addinpdata = async (e) => {
+        e.preventDefault();
 
-    //     const { name, email, work, add, mobile, desc, age } = inpval;
+        const { name, email, work, add, mobile, desc, age } = inpval;
 
-    //     const res = await fetch("https://crudappreactjs.herokuapp.com/register", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({
-    //             name, email, work, add, mobile, desc, age
-    //         })
-    //     });
+        const res = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name, email, work, add, mobile, desc, age
+            })
+        });
 
-    //     const data = await res.json();
-    //     console.log(data);
+        const data = await res.json();
+        console.log(data);
 
-    //     if (res.status === 422 || !data) {
-    //         console.log("error ");
-    //         alert("error");
+        if (res.status === 422 || !data) {
+            console.log("error ");
+            alert("error");
 
-    //     } else {
-    //         history.push("/")
-    //         setUdata(data)
-    //         console.log("data added");
+        } else {
+            // history.push("/")
+            // setUdata(data)
+            console.log("data added");
+            alert("data added")
 
-    //     }
-    // }
+        }
+    }
 
     return (
         <div className="container">
@@ -95,7 +96,7 @@ const Register = () => {
                         <textarea name="desc" value={inpval.desc} onChange={setdata} className="form-control" id="" cols="30" rows="5"></textarea>
                     </div>
 
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" onClick={addinpdata} className="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
