@@ -15,6 +15,7 @@ app.use(express.json());
 
 app.use(router)
 
+// Start the server
 app.listen(port,()=>{
     console.log(`server is start port number ${port}`)
 })

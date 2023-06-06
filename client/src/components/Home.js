@@ -39,27 +39,33 @@ const Home = () => {
         getdata();
     }, [])
 
-    // const deleteuser = async (id) => {
+    const deleteuser = async (id) => {
 
-    //     const res2 = await fetch(`https://crudappreactjs.herokuapp.com/deleteuser/${id}`, {
-    //         method: "DELETE",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     });
+        if (window.confirm("Do you want to delete")) {
+            const res2 = await fetch(`/deleteuser/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+    
+            const deletedata = await res2.json();
+            console.log(deletedata);
+    
+            if (res2.status === 422 || !deletedata) {
+                console.log("error");
+            } else {
+                console.log("user deleted");
+                // setDLTdata(deletedata)
+                getdata();
+            }
+          } else {
+            return;
+          }
 
-    //     const deletedata = await res2.json();
-    //     console.log(deletedata);
+        
 
-    //     if (res2.status === 422 || !deletedata) {
-    //         console.log("error");
-    //     } else {
-    //         console.log("user deleted");
-    //         setDLTdata(deletedata)
-    //         getdata();
-    //     }
-
-    // }
+    }
 
 
     return (
@@ -127,28 +133,13 @@ const Home = () => {
                                                 <td className="d-flex justify-content-between">
                                                     <Link to={`view/${element._id}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></Link>
                                                     <Link to={`edit/${element._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></Link>
-                                                    <button className="btn btn-danger" ><DeleteOutlineIcon /></button>
+                                                    <button className="btn btn-danger" onClick={()=>deleteuser(element._id)} ><DeleteOutlineIcon /></button>
                                                 </td>
                                             </tr>
                                         </>
                                     )
                                 })
                             }
-                            {/* <tr>
-                                <th scope="row">1</th>
-                                <td>Shyama</td>
-                                <td>shyama@gmail.com</td>
-                                <td>Web development</td>
-                                <td>7894563210</td>
-                                <td className="d-flex justify-content-between">
-                                    <Link > <button className="btn btn-success"><RemoveRedEyeIcon /></button></Link>
-                                    <Link >  <button className="btn btn-primary"><CreateIcon /></button></Link>
-                                    <button className="btn btn-danger" ><DeleteOutlineIcon /></button>
-                                    <Link to={`view/${element._id}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></Link>
-                                    <Link to={`edit/${element._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></Link>
-                                    <button className="btn btn-danger" onClick={() => deleteuser(element._id)}><DeleteOutlineIcon /></button>
-                                </td>
-                            </tr> */}
                         </tbody>
                     </table>
 

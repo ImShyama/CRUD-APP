@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 // import { adddata } from './context/ContextProvider';
 
 const Register = () => {
 
     // const { udata, setUdata } = useContext(adddata);
 
-    // const history = useHistory();
+    const navigate = useNavigate();
 
     const [inpval, setINP] = useState({
         name: "",
@@ -54,7 +54,7 @@ const Register = () => {
             alert("error");
 
         } else {
-            // history.push("/")
+            navigate('/');
             // setUdata(data)
             console.log("data added");
             alert("data added")
