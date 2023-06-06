@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { NavLink, useParams,useHistory } from 'react-router-dom'
+import { NavLink, useParams,useNavigate } from 'react-router-dom'
 // import { updatedata } from './context/ContextProvider'
 
 
@@ -10,7 +10,7 @@ const Edit = () => {
 
 //    const {updata, setUPdata} = useContext(updatedata)
 
-    // const history = useHistory("");
+    const navigate = useNavigate();
 
     const [inpval, setINP] = useState({
         name: "",
@@ -83,12 +83,13 @@ const Edit = () => {
 
         const data2 = await res2.json();
         console.log(data2);
+        console.log(res2.status);
 
         if(res2.status === 422 || !data2){
             alert("fill the data");
         }else{
             alert("data updated");
-            // history.push("/")
+            navigate('/');
             // setUPdata(data2);
         }
 

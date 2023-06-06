@@ -82,7 +82,7 @@ router.patch("/updateuser/:id",async(req,res)=>{
         const updateduser = await users.findByIdAndUpdate(id,req.body,{
             new:true
         });
-        console.log(updateuser);
+        console.log(updateduser);
         res.status(201).json(updateduser)
     }catch(error){
         res.status(422).json(error);
