@@ -3,8 +3,7 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Link } from 'react-router-dom';
-// import { adddata, deldata } from './context/ContextProvider';
-// import { updatedata } from './context/ContextProvider'
+import { adddata, deldata,updatedata } from './context/contextProvider';
 
 
 
@@ -13,11 +12,11 @@ const Home = () => {
     const [getuserdata, setUserdata] = useState([]);
     console.log(getuserdata);
 
-    // const { udata, setUdata } = useContext(adddata);
+    const { udata, setUdata } = useContext(adddata);
 
-    // const {updata, setUPdata} = useContext(updatedata);
+    const {updata, setUPdata} = useContext(updatedata);
 
-    // const {dltdata, setDLTdata} = useContext(deldata);
+    const {dltdata, setDLTdata} = useContext(deldata);
 
     const getdata = async () => {
         const res = await fetch("/getdata", {
@@ -56,7 +55,7 @@ const Home = () => {
                 console.log("error");
             } else {
                 console.log("user deleted");
-                // setDLTdata(deletedata)
+                setDLTdata(deletedata)
                 getdata();
             }
           } else {
@@ -71,7 +70,7 @@ const Home = () => {
     return (
 
         <>
-            {/* {
+            {
                 udata ?
                     <>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -98,7 +97,7 @@ const Home = () => {
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     </> : ""
-            } */}
+            }
 
 
             <div className="mt-5">

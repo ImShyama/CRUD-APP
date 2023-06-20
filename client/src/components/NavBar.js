@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const Navbaar = () => {
@@ -27,7 +27,6 @@ const Navbaar = () => {
                 </div>
             </nav>
         </header>
-        <Outlet />
         </>
 
     )

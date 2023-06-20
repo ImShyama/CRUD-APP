@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-// import { adddata } from './context/ContextProvider';
+import { adddata } from './context/contextProvider';
 
 const Register = () => {
 
-    // const { udata, setUdata } = useContext(adddata);
+    const { udata, setUdata } = useContext(adddata);
 
     const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const Register = () => {
 
         } else {
             navigate('/');
-            // setUdata(data)
+            setUdata(data)
             console.log("data added");
             alert("data added")
 

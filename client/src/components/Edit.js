@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useParams,useNavigate } from 'react-router-dom'
-// import { updatedata } from './context/ContextProvider'
+import { updatedata } from './context/contextProvider'
 
 
 const Edit = () => {
@@ -8,7 +8,7 @@ const Edit = () => {
     const [getuserdata, setUserdata] = useState([]);
     console.log(getuserdata);
 
-//    const {updata, setUPdata} = useContext(updatedata)
+   const {updata, setUPdata} = useContext(updatedata)
 
     const navigate = useNavigate();
 
@@ -90,7 +90,7 @@ const Edit = () => {
         }else{
             alert("data updated");
             navigate('/');
-            // setUPdata(data2);
+            setUPdata(data2);
         }
 
     }
